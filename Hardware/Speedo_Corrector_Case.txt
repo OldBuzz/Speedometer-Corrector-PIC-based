@@ -1,0 +1,7 @@
+Speedometer Corrector Case
+--------------------------
+
+The device should be placed in a case. If it will be mounted under the hood, it
+should be melt-proof and water-proof, and mounted high up near the firewall.
+Many project boxes are available from electronics suppliers, and eBay, and
+Amazon.

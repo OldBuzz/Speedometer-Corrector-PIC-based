@@ -1,0 +1,29 @@
+Speedometer Corrector Parts List
+--------------------------------
+
+1   PIC18F1320-E/P (DIP18, extended temperature) microcontroller
+1   PN2222A transistor
+8   Resistor, 10K, 1/8 to 1/4 watt
+1   Resistor, 4.7K, 1/8 to 1/4 watt
+3   Resistor, 1K, 1/8 to 1/4 watt
+1   Resistor, 10 ohm, 1/4 watt (not lower)
+1   Capacitor, 22uF, electrolytic, radial
+1   Capacitor, 0.1uF, radial, ceramic disk or MLCC
+1   Capacitor, 0.01uF, radial, ceramic disk or MLCC
+1   Header, single row, 6 pin (for ICSP)
+1   Header, single row, 3 pin (for Inc/Dec)
+1   Header, single row, 3 pin (for Run/Bypass)
+2   Jumper (for Inc/Dec and Run/Bypass headers)
+1   Socket, DIP18 (for PIC)
+1   DIP Switch, 8 switches, DIP16 (sand off markings, they'll mislead you)
+1   PCB (have one made, or do your own point-to-point)
+1   Case (your choice, waterproof, melt-proof)
+*   Wires, 18-22 gauge, stranded, four different colors (you choose length)
+1   Connector, 4-pin, automotive, waterproof, male (optional)
+1   Connector, 4-pin, automotive, waterproof, female (optional)
+
+Many of these can be bought from Mouser or DigiKey:
+  https://www.mouser.com
+  https://www.digikey.com
+Some parts can be found on Amazon (DIP Switch, case, connector) or eBay or
+various surplus electronics websites.

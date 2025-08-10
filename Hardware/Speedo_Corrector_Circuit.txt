@@ -1,0 +1,44 @@
+Speedometer Corrector Circuit
+-----------------------------
+
+--------------------------
+How It Works in a Nutshell
+--------------------------
+It measures the period of the incoming squarewave from the speed sensor, and
+produces a longer or shorter output squarewave, depending on the correction
+factor entered on a set of switches.
+
+----------------
+Circuit Overview
+----------------
+On the Wrangler TJ, the PCM (Powertrain Control Module, aka ECU) puts out a
+regulated +5V and sensor ground to the speed sensor, so power for this circuit
+is taken from that. The incoming power is filtered with a low-pass (700 Hz
+cutoff) RC filter.
+
+The PCM pulls the sensor line up to +5V using an internal 1K ohm resistor. The
+sensor, in the tail housing of the transfer case, pulls that sensor line low
+periodically as the tailshaft rotates. That produces a 5V squarewave, from 0
+Hz at 0 MPH to a little over 200 Hz at 100 MPH. The exact numbers depend on
+tire diameter and differential gearing and the way the speed sensor is driven.
+The exact numbers don't really matter, because the Speedo Corrector will count
+the timing and modify it, based on your speedometer-to-GPS derived correction
+factor.
+
+The signal from the speed sensor is fed into the Speedo Corrector via a noise
+filter, which also includes a 1K ohm pullup resistor for the speed sensor. From
+the filter, the signal is fed into the PIC RB0/INT0 pin (a Schmitt Trigger).
+The firmware checks the speed of the incoming signal, and modifies it based on
+your correction factor, and outputs it on PIC pin RB1. That modified squarewave
+drives a transistor which pulls down the signal line from the PCM periodically.
+A Bypass/Run jumper selects which signal gets fed to the PCM, the one from the
+sensor (Bypass) or the one from the corrector circuit (Run). If anything goes
+wrong with the circuit, you can set the jumper to Bypass to go back to the
+factory way of doing things.
+
+Another jumper selects whether to Increase or Decrease the speedometer reading.
+If your speedometer is reading lower than your actual speed (checked with a
+GPS) you would set it to Increase.
+
+The percent to increase or decrease is selected with a bank of 8 slide switches
+in a DIP package, entered in binary.
