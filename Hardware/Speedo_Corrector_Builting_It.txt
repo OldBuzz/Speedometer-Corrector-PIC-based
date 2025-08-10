@@ -1,0 +1,33 @@
+Building the Speedometer Corrector
+----------------------------------
+
+-----------
+Building It
+-----------
+A KiCad project is provided, with schematic and PC board layout. The Gerber
+files can be sent to a PCB manufacturer for professionally done boards. Most
+American companies will cost a lot for 3 boards, plus shipping. Most Chinese
+companies will cost a tiny fraction of the American cost, for 10 boards, plus
+higher shipping, plus a possible import duty/tariff. A duty or tariff can cost
+more than the PCBs. Or you can wire it up by hand on a sea-of-holes breadboard.
+The project uses common easy-to-get parts (Mouser or DigiKey will have
+everything, maybe eBay or Amazon for an affordable 8-switch DIP). You could
+even design your own board for surface mount components, to shrink it, although
+the 8-switch DIP and the two jumpers and the ICSP header limit how small you
+can go.
+
+You will need a Microchip PIC 18F1320-E/P (extended temperature) 18-pin DIP
+through-hole microcontroller, programmed with the firmware provided here. You
+can program the chip in a stand-alone programmer, or use a PICkit 3 or 4 or
+equivalent device to program it on the board via ICSP. It can be compiled and
+burned with Microchip MPLAB X IDE v6.20, Microchip XC8 v3.00 compiler,
+Microchip PICkit3.
+
+The DIP-switch must be oriented correctly in the board (which will probably
+look wrong). See the "Photos" folder. Holding the circuit board vertically with
+the switch location up, the switch should go into the board with the "ON" side
+down, with pin 1 at the upper right. Once soldered in place, the markings on
+the DIP-switch should be sanded off to avoid confusion. The 1-8 switches are
+now bit 0-7, and the "ON" side is now zero, and the "OFF" side is now one. An
+open switch (off) allows the PIC to pull the signal up, and a closed switch
+(on) pulls the signal to ground, hence the inverted logic.
