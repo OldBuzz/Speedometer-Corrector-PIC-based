@@ -1,0 +1,37 @@
+Speedometer Corrector Firmware
+------------------------------
+
+-----------------
+Firmware Overview
+-----------------
+The squarewave from the speed sensor is received on the PIC RB0/INT0 pin, which
+is programmed to act as an interrupt pin on the falling edge of the squarewave.
+The PIC counts the period of the full squarewave, from falling edge to falling
+edge. It multiplies that period by the correction factor (longer or shorter),
+and then outputs a squarewave with the new period on the RB1 pin.
+
+Two of the PIC 16-bit timers are used, one for counting the input period, and
+one for counting the output period. The PIC runs at a leisurely 2 MHz (0.5 MHz
+instruction cycle) in order to get an appropriate speed for the timers. The
+timers count in something we'll call "ticks" which are 16uS long.
+
+The correction factor is read from the Inc/Dec jumper, and the 8 switches, only
+once, at power-up. The 8-bit value from the switches represents the percentage
+to increase or decrease, times two. This enables half-percent precision while
+using an unsigned integer.
+
+A watchdog timer runs independently, and will reset the PIC if the firmware
+goes out to lunch.
+
+Interesting note: This precision timing circuit runs on a processor using its
+internal RC oscillator, not a crystal. Perfect accuracy isn't needed, and drift
+doesn't bother us. This is because the timers are counting arbitrary ticks
+representing the period of the signal. The clock only has to be accurate over
+the fraction of a second duration of one full cycle of the squarewave, and even
+a really lousy clock doesn't drift appreciably in, say, 20 mS.
+
+-----
+Tools
+-----
+Microchip MPLAB X IDE v6.20 (free), Microchip XC8 v3.00 compiler (free),
+Microchip PICkit3 or 4 (costs money) or equivalent.
